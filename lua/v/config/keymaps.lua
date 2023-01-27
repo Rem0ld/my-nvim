@@ -46,9 +46,15 @@ map("n", "<leader>L", "<cmd>Lazy<cr>", { desc = "Show lazy menu" })
 
 -- Gitui
 map("n", "<leader>gg", "<cmd>lua global.toggle_term_cmd('gitui')<cr>", { desc = "gitui (cwd)" })
+
 -- floating terminal
 map("n", "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "Terminal (cwd)" })
 map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
+
+-- Bufferline & Bufdelete
+map("n", "<Tab>", "<cmd>BufferLineCycleNext<cr>", {desc = "Next buffer tab"})
+map("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<cr>", {desc = "Previous buffer tab"})
+map("n", "<leader>c", "<cmd>Bdelete<cr>", {desc = "Previous buffer tab"})
 
 -- Neotree
 map("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "Toggle neotree" })
