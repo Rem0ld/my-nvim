@@ -25,7 +25,12 @@ return {
                 "lua",
                 "typescript",
                 "rust",
-                "query"
+                "query",
+                "regex",
+                "vim",
+                "bash",
+                "markdown",
+                "markdown_inline"
             },
 			highlight = {
 				enable = true,

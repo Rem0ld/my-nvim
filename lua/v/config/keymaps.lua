@@ -26,10 +26,10 @@ map("n", "n", "nzzzv", { silent = true })
 map("n", "N", "Nzzzv", { silent = true })
 
 -- Navigation
-map("n", "<C-h>", "<C-w>h", {desc = "Move to left split"})
-map("n", "<C-j>", "<C-w>j", {desc = "Move to bottom split"})
-map("n", "<C-k>", "<C-w>k", {desc = "Move to top split"})
-map("n", "<C-l>", "<C-w>l", {desc = "Move to right split"})
+map("n", "<C-h>", "<C-w>h", { desc = "Move to left split" })
+map("n", "<C-j>", "<C-w>j", { desc = "Move to bottom split" })
+map("n", "<C-k>", "<C-w>k", { desc = "Move to top split" })
+map("n", "<C-l>", "<C-w>l", { desc = "Move to right split" })
 
 -- Going through quicklist
 map("n", "[q", ":cp<cr><cr>", { silent = true })
@@ -38,8 +38,17 @@ map("n", "]q", ":cn<cr><cr>", { silent = true })
 -- Better delete ( remove from registers )
 map("n", "<leader>d", '"_d', { silent = true })
 
+-- Comment line
+map("n", "<leader>/", "gcc", { desc = "Comment line" })
+
 -- Lazy menu
 map("n", "<leader>L", "<cmd>Lazy<cr>", { desc = "Show lazy menu" })
+
+-- Gitui
+map("n", "<leader>gg", "<cmd>lua global.toggle_term_cmd('gitui')<cr>", { desc = "gitui (cwd)" })
+-- floating terminal
+map("n", "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "Terminal (cwd)" })
+map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
 
 -- Neotree
 map("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "Toggle neotree" })
