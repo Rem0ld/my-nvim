@@ -2,12 +2,27 @@ return {
   "neovim/nvim-lspconfig",
   event = "BufReadPre",
   dependencies = {
-    {"folke/neoconf.nvim", cmd = "Neoconf", config = true},
-    {"folke/neodev.nvim", opts = {experimental = {pathStrict = true}}},
+    { "folke/neoconf.nvim", cmd = "Neoconf", config = true },
+    { "folke/neodev.nvim", opts = { experimental = { pathStrict = true } } },
+    "mason.nvim",
     "jose-elias-alvarez/typescript.nvim",
     "folke/neodev.nvim",
     "jose-elias-alvarez/null-ls.nvim",
     "b0o/schemastore.nvim",
+    "hrsh7th/cmp-nvim-lsp",
+  },
+  opts = {
+    diagnostics = {
+      underline = true,
+      update_in_insert = false,
+      virtual_text = { spacing = 4, prefix = "●" },
+      severity_sort = true,
+    },
+    autoformat = true,
+    format = {
+      formatting_options = nil,
+      timeout_ms = nil,
+    },
   },
   config = function()
     local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
@@ -23,6 +38,26 @@ return {
           end,
         })
       end
+
+      local bufopts = { noremap = true, silent = true, buffer = bufnr }
+
+      vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { table.unpack(bufopts), desc = "Go to Declaration" })
+      vim.keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<cr>", { table.unpack(bufopts), desc = "Go to definition" })
+      vim.keymap.set("n", "K", vim.lsp.buf.hover, { table.unpack(bufopts), desc = "Hover" })
+      vim.keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<cr>", { table.unpack(bufopts), desc = "Go to implementation" })
+      vim.keymap.set("n", "gK", vim.lsp.buf.signature_help, { table.unpack(bufopts), desc = "Go to signature help" })
+      vim.keymap.set("n", "<leader>lD", vim.lsp.buf.type_definition, { table.unpack(bufopts), desc = "Go to type definition" })
+      vim.keymap.set("n", "<leader>lr", vim.lsp.buf.rename, { table.unpack(bufopts), desc = "Rename" })
+      vim.keymap.set("n", "<leader>lca", vim.lsp.buf.code_action, { table.unpack(bufopts), desc = "Code action" })
+      vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", { table.unpack(bufopts), desc = "Go to references" })
+      vim.keymap.set("n", "<leader>lf", function()
+        vim.lsp.buf.format({ async = true })
+      end, { table.unpack(bufopts), desc = "Format" })
+
+      vim.keymap.set("n", "gl", vim.diagnostic.open_float, { table.unpack(bufopts), desc = "Line diagnostics" })
+      vim.keymap.set("n", "<leader>li", "<cmd>LspInfo<cr>", { table.unpack(bufopts), desc = "Lsp Info" })
+      vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { table.unpack(bufopts), desc = "Next Diagnostic" })
+      vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { table.unpack(bufopts), desc = "Previous Diagnostic" })
     end
 
     local _cmp_nvim_lsp, cmp_nvim_lsp = pcall(require, "cmp_nvim_lsp")

@@ -14,6 +14,7 @@ map("n", "<leader>q", "<cmd>q<cr>")
 map("n", "<leader>/", ":nohlsearch<CR>", { silent = true })
 map("n", "|", "<cmd>vsplit<cr>")
 map("n", "\\", "<cmd>split<cr>")
+map("n", "<leader>h", "<cmd>nohl<cr>")
 
 -- Move lines
 map("n", "<leader>j", ":m .+1<cr>==", { silent = true })
@@ -41,20 +42,14 @@ map("n", "<leader>d", '"_d', { silent = true })
 -- Comment line
 map("n", "<leader>/", "gcc", { desc = "Comment line" })
 
--- Lazy menu
-map("n", "<leader>L", "<cmd>Lazy<cr>", { desc = "Show lazy menu" })
-
--- Gitui
-map("n", "<leader>gg", "<cmd>lua global.toggle_term_cmd('gitui')<cr>", { desc = "gitui (cwd)" })
-
 -- floating terminal
-map("n", "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "Terminal (cwd)" })
+map("n", "<leader>tf", "<cmd>ToggleTerm direction=float<cr>", { desc = "Floating Terminal (cwd)" })
 map("t", "<esc><esc>", "<c-\\><c-n>", { desc = "Enter Normal Mode" })
 
 -- Bufferline & Bufdelete
-map("n", "<Tab>", "<cmd>BufferLineCycleNext<cr>", {desc = "Next buffer tab"})
-map("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<cr>", {desc = "Previous buffer tab"})
-map("n", "<leader>c", "<cmd>Bdelete<cr>", {desc = "Previous buffer tab"})
+map("n", "<Tab>", "<cmd>BufferLineCycleNext<cr>", { desc = "Next buffer tab" })
+map("n", "<S-Tab>", "<cmd>BufferLineCyclePrev<cr>", { desc = "Previous buffer tab" })
+map("n", "<leader>c", "<cmd>Bdelete<cr>", { desc = "Close current buffer" })
 
 -- Neotree
 map("n", "<leader>e", "<cmd>Neotree toggle<cr>", { desc = "Toggle neotree" })
@@ -98,10 +93,14 @@ map("n", "<leader>gr", "<cmd>lua require('gitsigns').reset_buffer()<cr>", { desc
 map("n", "<leader>gs", "<cmd>lua require('gitsigns').stage_hunk()<cr>", { desc = "Next Git hunk" })
 map("n", "<leader>gu", "<cmd>lua require('gitsigns').undo_stage_hunk()<cr>", { desc = "Next Git hunk" })
 map("n", "<leader>gd", "<cmd>lua require('gitsigns').diffthis()<cr>", { desc = "Next Git hunk" })
+-- Gitui
+map("n", "<leader>gg", "<cmd>lua global.toggle_term_cmd('gitui')<cr>", { desc = "gitui (cwd)" })
 
+-- Lazy menu
+map("n", "<leader>pl", "<cmd>Lazy<cr>", { desc = "Show lazy menu" })
 -- Mason
-map("n", "<leader>mi", "<cmd>Mason<cr>", { desc = "Mason installer" })
-map("n", "<leader>mu", "<cmd>Mason<cr>", { desc = "Mason update" })
+map("n", "<leader>pmi", "<cmd>Mason<cr>", { desc = "Mason installer" })
+map("n", "<leader>pmu", "<cmd>Mason<cr>", { desc = "Mason update" })
 
 -- INSERT
 -- Better escape

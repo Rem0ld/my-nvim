@@ -29,12 +29,8 @@ _.setup = function(on_attach)
     save_after_format = true,
     sources = {
       diagnostics.hadolint,
-      diagnostics.tidy,
       diagnostics.markdownlint,
       diagnostics.shellcheck,
-      diagnostics.alex,
-      diagnostics.write_good,
-      diagnostics.checkmake,
       diagnostics.eslint_d.with({
         condition = include_root_file({
           ".eslintrc.json",
@@ -42,18 +38,18 @@ _.setup = function(on_attach)
       }),
 
       formatting.prettierd.with({
-        condition = include_root_file({ ".prietterrc", ".prettierrc.json" }),
+        condition = include_root_file({ ".prettierrc", ".prettierrc.json" }),
       }),
       formatting.eslint_d.with({
-        condition = include_root_file({".eslintrc.json"}),
+        condition = include_root_file({ ".eslintrc.json" }),
       }),
       formatting.stylua,
       formatting.shfmt.with({
         filetypes = { "sh", "bash", "zsh" },
       }),
-      formatting.gofumpt,
 
       code_actions.shellcheck,
+      code_actions.eslint_d,
     },
     on_attach = on_attach,
   })
